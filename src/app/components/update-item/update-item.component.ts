@@ -1,3 +1,4 @@
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Component, Input, OnInit } from '@angular/core';
 import { Swot } from 'src/app/models/swot-model/swot';
 import { SwotItem } from 'src/app/models/swot-model/swot-item';
@@ -18,7 +19,8 @@ export class UpdateItemComponent implements OnInit {
   @Input() passedSwotItem: SwotItem;
 
   constructor(private route: ActivatedRoute,
-              private swotService: SwotService) { }
+              private swotService: SwotService,
+              private modalService: NgbModal) { }
 
   ngOnInit(): void {
     console.log(this.passedSwotItem);
@@ -34,6 +36,7 @@ export class UpdateItemComponent implements OnInit {
       .subscribe(data => {
         console.log(data);
       });
+    this.modalService.dismissAll();
   }
 
 }

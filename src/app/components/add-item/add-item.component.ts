@@ -1,3 +1,4 @@
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SwotService } from 'src/app/services/swot/swot.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { Swot } from 'src/app/models/swot-model/swot';
@@ -14,7 +15,7 @@ export class AddItemComponent implements OnInit {
   swotItem : SwotItem;
   @Input() parentSwot : Swot;
   
-  constructor(private swotService : SwotService) { }
+  constructor(private swotService : SwotService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.swotItem = new SwotItem(0, "", "", this.parentSwot.id)
@@ -29,6 +30,7 @@ export class AddItemComponent implements OnInit {
       .subscribe(data => {
         console.log(data);
       });
+    this.modalService.dismissAll();
   }
 
 }
